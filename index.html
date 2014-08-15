@@ -1,0 +1,37 @@
+
+<html>
+  <head>
+    <script src="https://cdn.firebase.com/js/client/1.0.19/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <title>useless firebase app</title>
+  </head>
+  <body>
+    <h1> descriptor </h1>
+
+    <textarea class="textbox" rows="50" maxlength="500px"/> test 1 </textarea>
+
+    <script class="code">
+
+      var myData = new Firebase('https://aamujuydtdf.firebaseio-demo.com/');
+
+      var thisCode = myData.child('code');
+
+      thisCode.set({text:$('.textbox').val()});
+
+      $('.textbox').on('input', function(){
+        thisCode.update({text:$('.textbox').val()})
+      })
+
+      thisCode.on('child_changed', function(snapshot){
+        var updatedCode = snapshot.val();
+        console.log(updatedCode);
+        $('.textbox').val(updatedCode);
+      });
+
+
+
+
+
+    </script>
+  </body>
+</html>
