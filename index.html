@@ -6,17 +6,28 @@
     <title>useless firebase app</title>
   </head>
   <body>
-    <h1> descriptor </h1>
+    <div>
+      <h1> do not press the red button </h1>
+      <div style="background-color:red">
+        <button class="danger"> DANGER !!! </button>
+      </div>
+    </div>
 
-    <textarea class="textbox" rows="50" maxlength="500px"/> test 1 </textarea>
+
+    <textarea class="textbox" style="width: 800px; height: 300px"/></textarea>
+<!-- alert("i dare you") -->
 
     <script class="code">
 
       var myData = new Firebase('https://aamujuydtdf.firebaseio-demo.com/');
 
       var thisCode = myData.child('code');
+      var someScript = myData.child('script');
+      var counter = 0;
 
-      thisCode.set({text:$('.textbox').val()});
+      thisCode.on('value', function(snapshot){
+        $('.textbox').value(snapshot.val());
+      })
 
       $('.textbox').on('input', function(){
         thisCode.update({text:$('.textbox').val()})
@@ -24,14 +35,25 @@
 
       thisCode.on('child_changed', function(snapshot){
         var updatedCode = snapshot.val();
-        console.log(updatedCode);
         $('.textbox').val(updatedCode);
       });
+        
+      someScript.on('child_changed', function(snapshot){
+        counter = snapshot.val();
+        var scriptTag = document.createElement('script');
+        scriptTag.type = 'text/javascript';
+        scriptTag.text = $('.textbox').val();
+        console.log(scriptTag);
+        $('body').append(scriptTag);
+      });
 
-
-
-
+      $('.danger').on('click', function(){
+        counter++;
+        someScript.update({script: counter});
+      });
 
     </script>
+
+
   </body>
 </html>
