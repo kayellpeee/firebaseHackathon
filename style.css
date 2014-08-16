@@ -1,0 +1,44 @@
+body {
+  background-color: #2E4259
+}
+
+#header {
+  margin: 0 auto;
+  width:100%;
+  text-align:center
+}
+
+#title {
+  color: #03C8FA;
+  font-family: helvetica;
+  text: do not press the red button;
+  text-transform: uppercase
+}
+
+#textareaDiv {
+  margin: 0 auto;
+  width:100%;
+  text-align:center
+}
+
+.danger {
+  background-color:#F7483B;
+  color:#ECF0F1;
+  border:none;
+  height:30px;
+  width:30%;
+  margin:0 0 15px;
+  cursor:pointer
+}
+
+.textbox {
+  width: 80%;
+  margin: 0 auto;
+  height: 300px;
+  background-color: #ECF0F1;
+  font-family:helvetica;
+  font-size:16px;
+  padding:20px;
+  border:none;
+  outline:none
+}
